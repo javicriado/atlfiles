@@ -1,0 +1,47 @@
+-- @atlcompiler atl2010
+module ModelTransformationTest;
+create AMOUT : AMM from AMIN : AMM;
+
+helper def: getComponent(c_name : String) : AMM!ComplexAbstractComponent =
+	AMM!ComplexAbstractComponent->allInstances()->select(c|c.component_name=c_name)->first()
+	;
+
+rule ComplexAbstractComponent {
+	from
+		f : AMM!ComplexAbstractComponent
+	to
+		t : AMM!ComplexAbstractComponent (
+			component_name <- f.component_name
+			,
+			component_parent <- f.component_parent
+			
+		)
+}
+
+rule SimpleAbstractComponent {
+	from
+		f : AMM!SimpleAbstractComponent
+	to
+		t : AMM!SimpleAbstractComponent (
+			component_name <- f.component_name
+			,
+			component_parent <- f.component_parent
+			
+		)
+}
+
+rule ArchitecturalModel {
+	from
+		f : AMM!ArchitecturalModel
+	to
+		t : AMM!ArchitecturalModel (
+			container <- f.container
+			
+		)
+}
+
+endpoint rule InsertComponents() {
+	do {
+		
+	}
+}
