@@ -1,0 +1,18 @@
+-- @atlcompiler atl2010
+module ModelTransformationTest;
+create AMOUT : AMM refining AMIN : AMM;
+
+rule DeleteVideoLowQ {
+	from
+		f : AMM!SimpleAbstractComponent
+		(
+			f.component_name = 'VideoLowQ'
+			
+		)
+	to drop
+		
+}
+
+helper def: getSimpleComponent(c_name : String) : AMM!SimpleAbstractComponent =
+	AMM!SimpleAbstractComponent->allInstances()->select(c|c.component_name=c_name)->first()
+	;
