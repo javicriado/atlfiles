@@ -1,4 +1,4 @@
-testmoscript
+atliles
 ============
 
-Test for getting repository data from MoScript
+Test for getting repository data from GitHub
